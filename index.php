@@ -1,6 +1,5 @@
 <?php
-    include("config.php");
-    session_start();
+    include("config.php")
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -15,6 +14,7 @@
       $count = mysqli_num_rows($result);
 
       if($count == 1) {
+        $_SESSION['idcode'] = $row['idcode'];
         $_SESSION['phone'] = $row['phone'];
         $_SESSION['name'] = $row['name'];
         $_SESSION['branch'] = $row['branch'];
@@ -74,9 +74,14 @@
               <option>سایر مدارس</option>
             </select>
             <div class="form-label-group text-right" id="inputSchoolBox" style="display: none;">
-                <input type="text" id="inputSchool" name="inputSchool" class="form-control" placeholder="نام مدرسه" required>
+                <input type="text" id="inputSchool" name="inputSchool" class="form-control" placeholder="نام مدرسه">
                 <label for="inputSchool">نام مدرسه</label>
             </div>
+            <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" data-width="100%" title="انتخاب وبینار">
+              <option disabled>انتخاب وبینار</option>
+              <option>ادونس</option>
+              <option>امیرآباد</option>
+            </select>
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick="callLogin();">ورود</button>
             </form>
           </div>

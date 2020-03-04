@@ -2,11 +2,14 @@
         <div class="card card-bar my-5">
           <div class="card-body">
           <div class="row">
-    <div class="col-md-6 offset-md-3">
+    		<div class="col-md-6 offset-md-3">
                 <h1><img src="logo.png" height="34px"> مجتمع علامه طباطبایی | <span>زیست شناسی</span></h1>
             </div>
-            <div class="col-md-3">
+            <div class="col-md">
                 <button class="btn btn-lg btn-facebook btn-block text-uppercase" data-toggle="modal" data-target="#myModal" >پرسش از استاد</button>
+            </div>
+            <div class="col-md-auto">
+                <button class="btn btn-lg btn-danger d-inline-block" data-toggle="modal" data-target="#myModal" >پرسش از استاد</button>
             </div>
           </div>
             </div>

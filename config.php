@@ -30,4 +30,6 @@ function cleanuserinput($dirty){
     return $clean;
 }
 
+session_start();
+
 ?>
