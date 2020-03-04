@@ -63,7 +63,7 @@
                 <input type="tel" id="inputCode" name="inputCode" style="direction: ltr;" class="form-control" placeholder="شماره موبایل" required>
                 <label for="inputCode">کد ملی</label>
             </div>
-            <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" title="واحد تحصیلی">
+            <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" data-width="100%" title="واحد تحصیلی">
               <option disabled>واحد تحصیلی</option>
               <option>ادونس</option>
               <option>امیرآباد</option>
@@ -73,7 +73,7 @@
               <option>کارگرشمالی</option>
               <option>سایر مدارس</option>
             </select>
-            <div class="form-label-group text-right" id="inputSchoolBox" hidden>
+            <div class="form-label-group text-right" id="inputSchoolBox" style="display: none;">
                 <input type="text" id="inputSchool" name="inputSchool" class="form-control" placeholder="نام مدرسه" required>
                 <label for="inputSchool">نام مدرسه</label>
             </div>
@@ -96,6 +96,7 @@
 <!--BEGIN RAYCHAT CODE--> <script type="text/javascript">!function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,localStorage.getItem("rayToken")?t.src="https://app.raychat.io/scripts/js/"+o+"?rid="+localStorage.getItem("rayToken")+"&href="+window.location.href:t.src="https://app.raychat.io/scripts/js/"+o;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}var e=document,a=window,o="93c2c133-2f9e-4904-8b6c-d206e781625b";"complete"==e.readyState?t():a.attachEvent?a.attachEvent("onload",t):a.addEventListener("load",t,!1)}();</script> <!--END RAYCHAT CODE-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139963582-2"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -107,10 +108,14 @@
 <script>
    $(document).ready(function(){
       $('#inputBranch').selectpicker();
+      $('#inputBranch').selectpicker();
       $('#inputBranch').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
          if($('#inputBranch').val() == 'سایر مدارس')
          {
-            $('#inputSchoolBox').show();
+            $('#inputSchoolBox').fadeIn();
+         }
+         else {
+            $('#inputSchoolBox').fadeOut();
          }
       });
 
