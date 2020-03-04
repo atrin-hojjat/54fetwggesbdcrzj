@@ -8,7 +8,7 @@
             <div class="col-md">
                 <button class="btn btn-lg btn-facebook btn-block text-uppercase" data-toggle="modal" data-target="#myModal" >پرسش از استاد</button>
             </div>
-            <div class="col-md-auto">
+            <div class="col-md">
                 <button class="btn btn-lg btn-danger d-inline-block" data-toggle="modal" data-target="#myModal" >پرسش از استاد</button>
             </div>
           </div>

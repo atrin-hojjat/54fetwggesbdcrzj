@@ -31,5 +31,4 @@ function cleanuserinput($dirty){
 }
 
 session_start();
-
 ?>
