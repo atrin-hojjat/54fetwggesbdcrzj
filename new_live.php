@@ -16,9 +16,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$res = mysqli_query($conn, $sql_2);
 		if (mysqli_num_rows($res) > 0) {
 			$zero = 0;
+			$inf_ago = "2000-01-01 00:00:00"
 	    while($row = mysqli_fetch_assoc($res)) {
-				$prep_2 = $conn->prepare("INSERT INTO `puz_absense`(`idcode`, `absense`, `time`, `livename`) VALUES(?, ?, ?, ?)");
-				$prep_2->bind_param("siis", $row['idcode'], $zero, $zero, $_POST['name']);
+				$prep_2 = $conn->prepare("INSERT INTO `puz_absense`(`idcode`, `absense`, `time`, `livename`, `last_check`) VALUES(?, ?, ?, ?, ?)");
+				$prep_2->bind_param("siis", $row['idcode'], $zero, $zero, $_POST['name'], $inf_ago);
 				$prep_2->execute();
 				$prep_2->close();
 
