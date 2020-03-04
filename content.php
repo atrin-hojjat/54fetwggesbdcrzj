@@ -12,7 +12,7 @@
             </div>
             </div>
         </div>
-       <div class="col-12 mx-auto">
+    		<div class="col-12 mx-auto">
             <div class="card card-content my-5" id="content-box">
 			</div>
         </div>
