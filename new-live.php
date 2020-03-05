@@ -3,11 +3,12 @@ include("config.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(hash("sha256", $_POST['password']) == "a87a5843b906488216ff1614dee5b5b3a59470163617f462061f9cba863b535b")
 	{
-		$prep = $conn->prepare("INSERT INTO `puz_liveshows`(`name`, `date`) VALUES(?, ?)");
-		$prep->bind_param("ss", $_POST['name'], $_POST['date']);
+		$prep = $conn->prepare("INSERT INTO `puz_liveshows`(`name`, `date`, `school`) VALUES(?, ?, ?)");
+		$prep->bind_param("sss", $_POST['name'], $_POST['date'], $_POST['school']);
 		$prep->execute();
 		$prep->close();
-		$sql_2 = "SELECT `idcode` FROM `puz_users`";
+		$sql_2 = $conn->prepare("SELECT `idcode` FROM `puz_users` where `school`=?");
+		$prep->bind_param("s", $_POST['school']);
 		$res = mysqli_query($conn, $sql_2);
 		if (mysqli_num_rows($res) > 0) {
 			$zero = 0;
@@ -62,6 +63,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-label-group text-right">
                 <input type="text" id="inputName" name="name" class="form-control" placeholder="نام وبینار" required>
                 <label for="inputName">نام وبینار</label>
+            </div>
+            <div class="form-label-group text-right">
+                <input type="text" id="inputSchool" name="school" class="form-control" placeholder="نام مدرسه" required>
+                <label for="inputName">نام مدرسه</label>
             </div>
             <div class="form-label-group text-right">
                 <input type="text" id="inputDate" name="date" class="form-control" placeholder="تاریخ برگزاری میلادی" required>
