@@ -1,7 +1,6 @@
 <?php
 include("config.php");
 ?>
-
 <?php
 $prep = $conn->prepare("SELECT `absense`, `time` from `puz_absense` where `idcode`=?");
 $prep->bind_param("s", $_SESSION['idcode']);
@@ -14,10 +13,7 @@ while($row = $res->fetch_assoc()) {
 	$_SESSION['absense'] = 1;
 	$prep_2->bind_param("iiss", $_SESSION['absense'], $new_time, $now, $_SESSION['idcode'], $_SESSION['livename']);
 	$prep_2->execute();
-#	echo $row['time'];
-#	echo $now;
 	$prep_2->close();
-
 }
 $prep->close();
-?>
+?

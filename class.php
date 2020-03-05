@@ -1,4 +1,8 @@
-<?php include("config.php"); ?>
+<?php include("config.php");
+if(!isset($_SESSION['name'])){
+	header('location:index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +43,11 @@
 						<div class="container">
 							<div class="row text-right">
 								<h4 class="col-md-10">اطلاعات کاربری:</h4>
-								<a class="col-md-2 text-left" href="logout.php">
-									<button class="btn btn-lg btn-danger btn-sm d-inline-block rounded-pill">خروج</button>
-								</a>
+								<div class="col-md-2 text-left">
+									<a href="logout.php">
+										<button class="btn btn-lg btn-danger btn-sm d-inline-block rounded-pill">خروج</button>
+									</a>
+								</div>
 								<div class="col-md-4">
 									<h5>نام و نام خانوادگی: <span><?php echo $_SESSION['name']; ?></span></h5>
 								</div>
@@ -101,9 +107,10 @@
 						<div class="col-md-12">
 							<form onsubmit="return false;" id="question-box">
 								<div class="form-group">
-									<input type="text" class="form-control" id="firstlastname" value="<?php echo $_SESSION['flname']; ?>" name="firstlastname" required hidden><br>
+									<input type="hidden" id="QuestionName" value="<?php echo $_SESSION['name']; ?>" name="QuestionName" required>
+									<input type="hidden" id="QuestionSchool" value="<?php echo $_SESSION['school']; ?>" name="QuestionSchool" required>
 									<label for="InputQuestion">متن سوال شما:</label>
-									<textarea class="form-control" id="question" rows="5" name="question" required></textarea>
+									<textarea class="form-control" id="QuestionText" rows="5" name="QuestionText" required></textarea>
 								</div>
 								<input type='submit' value='ارسال پرسش' id="submit" class="btn btn-success" />
 							</form>

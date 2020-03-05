@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       </div><?php
          }
       ?>
-      <?php if($count == 1) include("content.php"); ?>
+      <?php if($count == 1) include("class.php"); ?>
     </div>
   </div>
 </body>

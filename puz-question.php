@@ -1,9 +1,8 @@
-<?php
-// you can access the values posted by jQuery.ajax
-// through the global variable $_POST, like this:
-$namelive = $_POST['firstlastname'];
-$questionlive = $_POST['question'];
-date_default_timezone_set('Asia/Tehran');
+<?php include("config.php");
+
+$QuestionName = $_POST['QuestionName'];
+$QuestionSchool = $_POST['QuestionSchool'];
+$QuestionText = $_POST['QuestionText'];
 $timelive = date( 'Y-m-d H:i:s');
 function GetRealIp()
 {
@@ -19,25 +18,14 @@ function GetRealIp()
 }
 $iplive = GetRealIp();
 
-$servername = "localhost";
-$username = "puzzleed_livefa1";
-$password = "w1-K8ir0Q$@Y";
-$dbname = "puzzleed_liveshows";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+$sql = "";
 
-// Change character set to utf8
-mysqli_set_charset($conn, "utf8");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
-$sql = "INSERT INTO `live13980303` (`name`, `time`, `question`, `ipaddress`)
-VALUES ('$namelive', ' $timelive', '$questionlive', '$iplive')";
+$prep_2 = $conn->prepare("INSERT INTO `puz_questions` (`idcode`, `time`, `question`, `ipaddress`, `name`, `school`, `livegroup`)
+VALUES (?, ?, ?, ?, ?, ?, ?)");
+$prep_2->bind_param("sssssss", $_SESSION['idcode'], $timelive, $QuestionText, $iplive, $_SESSION['name'], $_SESSION['school'], $_SESSION['livegroup']);
+$prep_2->execute();
+$prep_2->close();
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
