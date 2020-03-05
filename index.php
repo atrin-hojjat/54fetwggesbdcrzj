@@ -5,8 +5,10 @@
 
       $myusername = mysqli_real_escape_string($conn,convertPersianToEnglish($_POST['inputCode']));
       
-      $sql = "SELECT * FROM `puz_users` WHERE idcode='$myusername'";
-      $result = mysqli_query($conn,$sql);
+      $prep = $conn->prepare("SELECT * FROM `puz_users` WHERE idcode=?");
+			$prep->bind_param("ss", $_POST['idcode']);
+			$prep->execute();
+      $result = $prep->get_result(); 
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
       
@@ -19,11 +21,13 @@
         $_SESSION['name'] = $row['name'];
         $_SESSION['branch'] = $row['branch'];
         $_SESSION['class'] = $row['class'];
-        $sql = "UPDATE `puz_users` SET `absence1`='1' WHERE `idcode`='".$_POST['inputCode']."')";
-        $res = $conn->query($sql);
+				$sql =$conn->prepare("UPDATE `puz_users` SET `absence1`='1' WHERE `idcode`=?)");
+				$sql->bin_parap("s", $_POST['idcode']);
+				$sql->execute();
       }else {
-        $sql = "INSERT INTO `puz_users_o`(`idcode`, `name`, `phone`, `school`) VALUES ('".$_POST['inputCode']."', '".$_POST['inputName']."', '0', '".$_POST['inputSchool']."')";
-        $res = $conn->query($sql);
+        $sql = $conn->prepare("INSERT INTO `puz_users_o`(`idcode`, `name`, `phone`, `school`) VALUES (?, ?, ?, ?)");
+				$sql->bind_param("ssis", $_POST['inputCode'], $_POST['inputName'], 0, $_POST['inputSchool']);
+				$sql->execute();
         $count = 1;
       }
       
