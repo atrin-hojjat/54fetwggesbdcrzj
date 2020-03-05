@@ -2,8 +2,8 @@
 include("config.php");
 ?>
 <?php
-$prep = $conn->prepare("SELECT `absense`, `time` from `puz_absense` where `idcode`=?");
-$prep->bind_param("s", $_SESSION['idcode']);
+$prep = $conn->prepare("SELECT `absense`, `time` from `puz_absense` where `idcode`=? and `livename`=?");
+$prep->bind_param("ss", $_SESSION['idcode'], $_SESSION['livename']);
 $prep->execute();
 $res = $prep->get_result();
 $now = date("Y-M-D H:i:s");
