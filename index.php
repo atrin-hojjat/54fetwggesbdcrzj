@@ -81,6 +81,16 @@
               <option disabled>انتخاب وبینار</option>
               <option>ادونس</option>
               <option>امیرآباد</option>
+              <?php 
+                $today = date('Y') . '-' . date('m') . '-' . date('d');
+                $sql_2 = "SELECT * FROM `puz_liveshows` WHERE `date`='$today'";
+                $res = mysqli_query($conn, $sql_2);
+                if (mysqli_num_rows($res) > 0) {
+                  while($row = mysqli_fetch_assoc($res)) {
+                    echo '<option>' . $row['name'] . '</option>';
+                  }
+                }
+              ?>
             </select>
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick="callLogin();">ورود</button>
             </form>
