@@ -6,29 +6,42 @@
       $myusername = mysqli_real_escape_string($conn,convertPersianToEnglish($_POST['inputCode']));
       
       $prep = $conn->prepare("SELECT * FROM `puz_users` WHERE idcode=?");
-			$prep->bind_param("ss", $_POST['idcode']);
+			$prep->bind_param("s", convertPersianToEnglish($_POST['inputCode']));
 			$prep->execute();
       $result = $prep->get_result(); 
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
-      
       $count = mysqli_num_rows($result);
 
       if($count == 1) {
-        $_SESSION['idcode'] = $row['idcode'];
-        $_SESSION['phone'] = $row['phone'];
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['branch'] = $row['branch'];
-        $_SESSION['class'] = $row['class'];
-				$sql =$conn->prepare("UPDATE `puz_users` SET `absence1`='1' WHERE `idcode`=?)");
-				$sql->bin_parap("s", $_POST['idcode']);
-				$sql->execute();
+        $_SESSION['idcode'] = convertPersianToEnglish($_POST['inputCode']);
+        $_SESSION['name'] = $row['fname'] . ' ' . $row['lname'];
+        $_SESSION['school'] = $row['branch'];
+        $_SESSION['livegroup'] = $_POST['inputLiveGroup'];
+        $_SESSION['absense'] = 0;
+        header('location:content.php');
       }else {
-        $sql = $conn->prepare("INSERT INTO `puz_users_o`(`idcode`, `name`, `phone`, `school`) VALUES (?, ?, ?, ?)");
-				$sql->bind_param("ssis", $_POST['inputCode'], $_POST['inputName'], 0, $_POST['inputSchool']);
-				$sql->execute();
+        $prepp = $conn->prepare("SELECT * FROM `puz_users_o` WHERE idcode=?");
+        $prepp->bind_param("s", convertPersianToEnglish($_POST['inputCode']));
+        $prepp->execute();
+        $resultt = $prepp->get_result(); 
+        $roww = mysqli_fetch_array($resultt,MYSQLI_ASSOC);
+        $countt = mysqli_num_rows($resultt);
+        $_SESSION['idcode'] = convertPersianToEnglish($_POST['inputCode']);
+        $_SESSION['livegroup'] = $_POST['inputLiveGroup'];
+        $_SESSION['absense'] = 'N';
+        if($countt == 0) {
+          $_SESSION['name'] = $_POST['inputName'];
+          $_SESSION['school'] = $_POST['inputSchool'];
+          $sql = $conn->prepare("INSERT INTO `puz_users_o`(`idcode`, `name`, `school`, `livegroup`) VALUES (?, ?, ?, ?)");
+          $sql->bind_param("ssss", convertPersianToEnglish($_POST['inputCode']), $_POST['inputName'], $_POST['inputSchool'], $_POST['inputLiveGroup']);
+          $sql->execute();
+        }
+        else {
+          $_SESSION['name'] = $roww['name'];
+          $_SESSION['school'] = $roww['school'];
+        }
         $count = 1;
+        header('location:content.php');
       }
       
    }
@@ -55,6 +68,9 @@
     <?php if($count != 1) {
       ?>
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" id="login-section">
+        <div class="text-center mt-5">
+			    <img src="logo.png" class="bg-white p-4 shadow rounded-circle" width="128px">
+		    </div>
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">ورود به وبینار</h5>
@@ -81,13 +97,11 @@
                 <input type="text" id="inputSchool" name="inputSchool" class="form-control" placeholder="نام مدرسه">
                 <label for="inputSchool">نام مدرسه</label>
             </div>
-            <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" data-width="100%" title="انتخاب وبینار">
+            <select class="selectpicker mb-3 w-100" id="inputLiveGroup" name="inputLiveGroup" data-width="100%" title="انتخاب وبینار">
               <option disabled>انتخاب وبینار</option>
-              <option>ادونس</option>
-              <option>امیرآباد</option>
               <?php 
                 $today = date('Y') . '-' . date('m') . '-' . date('d');
-                $sql_2 = "SELECT * FROM `puz_liveshows` WHERE `date`='$today'";
+                $sql_2 = "SELECT * FROM `puz_liveshows` WHERE `date`='$today' AND `school`='$school'";
                 $res = mysqli_query($conn, $sql_2);
                 if (mysqli_num_rows($res) > 0) {
                   while($row = mysqli_fetch_assoc($res)) {
@@ -103,7 +117,6 @@
       </div><?php
          }
       ?>
-      <?php if($count == 1) include("content.php"); ?>
     </div>
   </div>
 </body>
@@ -127,7 +140,7 @@
 <script>
    $(document).ready(function(){
       $('#inputBranch').selectpicker();
-      $('#inputBranch').selectpicker();
+      $('#inputLiveGroup').selectpicker();
       $('#inputBranch').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
          if($('#inputBranch').val() == 'سایر مدارس')
          {
@@ -152,5 +165,4 @@
          });
       });
 	</script>
-</script>
 </html>

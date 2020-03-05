@@ -84,6 +84,27 @@ body {
    margin-bottom: 0;
 }
 
+#how-bar h4, #user-bar h4 {
+   font-weight: 800;
+   font-size: 20px;
+   padding-bottom: 10px;
+}
+
+#how-bar p {
+   color: #7a7a7a;
+   font-size: 14px;
+}
+
+#user-bar h5 {
+   font-weight: 500;
+   font-size: 16px;
+}
+
+#user-bar h5 span {
+   font-weight: 300;
+   font-size: 14px;
+}
+
 .card-signin .card-title {
    margin-bottom: 2rem;
    font-weight: 300;
