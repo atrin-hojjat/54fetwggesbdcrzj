@@ -34,6 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex" />
     <title>مجتمع علامه طباطبایی</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" >
     <link href="css/font-awesome.min.css" rel="stylesheet" >
@@ -66,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-label-group text-right">
                 <input type="text" id="inputSchool" name="school" class="form-control" placeholder="نام مدرسه" required>
-                <label for="inputName">نام مدرسه</label>
+                <label for="inputSchool">نام مدرسه</label>
             </div>
             <div class="form-label-group text-right">
                 <input type="text" id="inputDate" name="date" class="form-control" placeholder="تاریخ برگزاری میلادی" required>
@@ -83,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       </div><?php
          }
       ?>
-      <?php if($count == 1) include("content.php"); ?>
+      <?php if($count == 1) include("class.php"); ?>
     </div>
   </div>
 </body>

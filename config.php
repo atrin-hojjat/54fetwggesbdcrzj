@@ -3,6 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "puzzleed_mat98";
+$school = "MAT";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -21,14 +22,7 @@ function convertPersianToEnglish($string) {
     return $output;
 }
 
-function cleanuserinput($dirty){
-    if (get_magic_quotes_gpc()) {
-        $clean = mysql_real_escape_string(stripslashes($dirty));
-    }else{
-        $clean = mysql_real_escape_string($dirty);
-    }
-    return $clean;
-}
+date_default_timezone_set('Asia/Tehran');
 
 session_start();
 ?>
