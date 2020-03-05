@@ -1,5 +1,5 @@
 <?php include("config.php");
-if(!isset($_SESSION['name'])){
+if (!isset($_SESSION['name'])) {
 	header('location:index.php');
 }
 ?>
@@ -39,12 +39,12 @@ if(!isset($_SESSION['name'])){
 			</div>
 			<div class="col-12 mx-auto">
 				<div class="card card-content my-5" id="content-box">
-				<?php
-                  $sql_2 = "SELECT * FROM `puz_liveshows` WHERE `name`='".$_SESSION['livegroup']."'";
-				  $res = mysqli_query($conn, $sql_2);
-				  $row = mysqli_fetch_assoc($res);
-				  echo $row['player2'];
-                  ?>
+					<?php
+					$sql_2 = "SELECT * FROM `puz_liveshows` WHERE `name`='" . $_SESSION['livegroup'] . "'";
+					$res = mysqli_query($conn, $sql_2);
+					$row = mysqli_fetch_assoc($res);
+					echo $row['player2'];
+					?>
 				</div>
 			</div>
 			<div class="col-12 mx-auto">
@@ -83,11 +83,11 @@ if(!isset($_SESSION['name'])){
 				<div class="card card-content mb-5 p-3" id="how-bar">
 					<div class="card-body">
 						<div class="container">
-							<div class="row">
-								<h4 class="w-100 text-right">راهنمای استفاده:</h4>
+							<div class="row text-right">
+								<h4 class="w-100">راهنمای استفاده:</h4>
 								<p>
 									در زمان اعلام شده شروع پخش رویداد، صفحه را یک بار بروزرسانی کنید و پس از آن روی دکمه پخش در قسمت مشکی رنگ بالا کلیک کنید.<br>
-									اگر در هنگام پخش ویدیو با مشکل مواجه شدید <a href=class-backup.php>این لینک</a> را امتحان کنید.
+									اگر در هنگام پخش ویدیو با مشکل مواجه شدید <a href=class.php>این لینک</a> را امتحان کنید.
 								</p>
 							</div>
 						</div>

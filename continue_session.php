@@ -16,4 +16,4 @@ while($row = $res->fetch_assoc()) {
 	$prep_2->close();
 }
 $prep->close();
-?
+?>
