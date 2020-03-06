@@ -138,7 +138,6 @@ if(!isset($_SESSION['name'])){
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap-select.min.js"></script>
-<script src="./js/socket.io.js"></script>
 
 <!--BEGIN RAYCHAT CODE-->
 <script type="text/javascript">
