@@ -176,6 +176,30 @@ if(!isset($_SESSION['name'])){
 			}
 		});
 
+		// Absense and stuff
+
+		//Socket based
+		if(true) {
+			let sock_conn_addr = "wss://localhost:8080" //TODO
+			//var sock = WebSocket(sock_conn_addr);
+			/*
+					
+			});*/
+
+		}
+
+		var upd_login = () => {
+			$.ajax({
+				method: 'post',
+				url: '/54fetwggesbdcrzj/continue_session.php', //TODO
+				success: (res) => {
+					console.log(res);
+				}
+			});
+		}	
+
+		upd_login();
+		var refresh_time = setInterval(upd_login, 20 * 1000); // TODO
 	});
 	$('#question-box').on('submit', function(e) {
 		e.preventDefault();
