@@ -138,6 +138,7 @@ if(!isset($_SESSION['name'])){
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/bootstrap-select.min.js"></script>
+<script src="./js/socket.io.js"></script>
 
 <!--BEGIN RAYCHAT CODE-->
 <script type="text/javascript">
@@ -185,11 +186,22 @@ if(!isset($_SESSION['name'])){
 
 		//Socket based
 		if(true) {
-			let sock_conn_addr = "wss://localhost:8080" //TODO
-			//var sock = WebSocket(sock_conn_addr);
-			/*
-					
-			});*/
+			let sock_conn_addr = "localhost:8080/" //TODO
+			var sock //= WebSocket(sock_conn_addr);
+<?php echo 'let attr = "session/login/" + "'.$_SESSION['livegroup'].'/'.$_SESSION['idcode'].'";'; ?>
+			//sock = new WebSocket("ws://" + sock_conn_addr + attr);
+
+			$.ajax({
+				method: 'post',
+				url: "http://" + sock_conn_addr + attr,
+				xhrFields: {
+						 withCredentials: true
+				},
+				crossDomain: true,
+				success: () => {
+						sock = new WebSocket("ws://"+  sock_conn_addr)
+				}
+			});
 
 		}
 
@@ -203,8 +215,7 @@ if(!isset($_SESSION['name'])){
 			});
 		}	
 
-		upd_login();
-		var refresh_time = setInterval(upd_login, 20 * 1000); // TODO
+		var refresh_time = setInterval(upd_login, 10 * 60 * 1000); // TODO
 	});
 	$('#question-box').on('submit', function(e) {
 		e.preventDefault();

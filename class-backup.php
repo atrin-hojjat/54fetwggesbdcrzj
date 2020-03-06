@@ -175,6 +175,40 @@ if (!isset($_SESSION['name'])) {
 				$('#inputSchoolBox').fadeOut();
 			}
 		});
+		// Absense and stuff
+
+		//Socket based
+		if(true) {
+			let sock_conn_addr = "localhost:8080/" //TODO
+			var sock //= WebSocket(sock_conn_addr);
+<?php echo 'let attr = "session/login/" + "'.$_SESSION['livegroup'].'/'.$_SESSION['idcode'].'";'; ?>
+			//sock = new WebSocket("ws://" + sock_conn_addr + attr);
+
+			$.ajax({
+				method: 'post',
+				url: "http://" + sock_conn_addr + attr,
+				xhrFields: {
+						 withCredentials: true
+				},
+				crossDomain: true,
+				success: () => {
+						sock = new WebSocket("ws://"+  sock_conn_addr)
+				}
+			});
+
+		}
+
+		var upd_login = () => {
+			$.ajax({
+				method: 'post',
+				url: '/54fetwggesbdcrzj/continue_session.php', //TODO
+				success: (res) => {
+					console.log(res);
+				}
+			});
+		}	
+
+		var refresh_time = setInterval(upd_login, 10 * 60 * 1000); // TODO
 
 	});
 	$('#question-box').on('submit', function(e) {
