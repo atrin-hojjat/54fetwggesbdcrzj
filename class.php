@@ -185,21 +185,20 @@ if(!isset($_SESSION['name'])){
 
 		//Socket based
 		if(true) {
-			let sock_conn_addr = "88.135.39.140:2031/" //TODO
+			let sock_conn_addr = "puzzle-edu.con:2112/" //TODO
 			var sock //= WebSocket(sock_conn_addr);
 <?php echo 'let attr = "session/login/" + "'.$_SESSION['livegroup'].'/'.$_SESSION['idcode'].'";'; ?>
 			//sock = new WebSocket("ws://" + sock_conn_addr + attr);
 
 			$.ajax({
 				method: 'post',
-				url: "http://" + sock_conn_addr + attr,
+				url: "https://" + sock_conn_addr + attr,
 				xhrFields: {
 						 withCredentials: true
 				},
 				crossDomain: true,
 				success: () => {
-						sock = new WebSocket("ws://"+  sock_conn_addr)
-						console.log('hi');
+						sock = new WebSocket("wss://"+  sock_conn_addr)
 				}
 			});
 
