@@ -7,9 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prep->execute();
     $prep->close();
     $sql_2 = $conn->prepare("SELECT `idcode` FROM `puz_users` where `school`=?");
-    $prep->bind_param("s", $_POST['school']);
-    $res = mysqli_query($conn, $sql_2);
-    if (mysqli_num_rows($res) > 0) {
+    $sql_2->bind_param("s", $_POST['school']);
+    $sql_2->execute();
+    $res = $sql_2->get_result();
+    if ($res->num_rows > 0) {
       $zero = 0;
       $inf_ago = "2000-01-01 00:00:00";
       while ($row = mysqli_fetch_assoc($res)) {
@@ -23,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $message = "رمز اشتباه است";
   }
+  $sql_2->close();
 }
 ?>
 
