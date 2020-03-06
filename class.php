@@ -186,7 +186,7 @@ if(!isset($_SESSION['name'])){
 
 		//Socket based
 		if(true) {
-			let sock_conn_addr = "localhost:8080/" //TODO
+			let sock_conn_addr = "88.135.39.140:2031/" //TODO
 			var sock //= WebSocket(sock_conn_addr);
 <?php echo 'let attr = "session/login/" + "'.$_SESSION['livegroup'].'/'.$_SESSION['idcode'].'";'; ?>
 			//sock = new WebSocket("ws://" + sock_conn_addr + attr);
@@ -200,6 +200,7 @@ if(!isset($_SESSION['name'])){
 				crossDomain: true,
 				success: () => {
 						sock = new WebSocket("ws://"+  sock_conn_addr)
+						console.log('hi');
 				}
 			});
 
@@ -214,7 +215,7 @@ if(!isset($_SESSION['name'])){
 				}
 			});
 		}
-
+		upd_login();
 		var refresh_time = setInterval(upd_login, 10 * 60 * 1000); // TODO
 	});
 	$('#question-box').on('submit', function(e) {
