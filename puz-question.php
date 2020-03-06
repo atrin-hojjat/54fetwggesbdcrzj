@@ -3,7 +3,7 @@
 $QuestionName = $_POST['QuestionName'];
 $QuestionSchool = $_POST['QuestionSchool'];
 $QuestionText = $_POST['QuestionText'];
-$timelive = date( 'Y-m-d H:i:s');
+$timelive = date('Y-m-d H:i:s');
 function GetRealIp()
 {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))

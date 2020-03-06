@@ -25,4 +25,3 @@ function convertPersianToEnglish($string) {
 date_default_timezone_set('Asia/Tehran');
 
 session_start();
-?>

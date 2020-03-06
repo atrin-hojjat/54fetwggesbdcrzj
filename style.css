@@ -90,7 +90,7 @@ body {
    padding-bottom: 10px;
 }
 
-#how-bar p {
+#how-bar p, #how-bar ul li {
    color: #7a7a7a;
    font-size: 14px;
 }
