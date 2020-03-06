@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = $prep->get_result();
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $count = mysqli_num_rows($result);
-  echo date('H:i');
 
   if ($count == 1) {
     $_SESSION['idcode'] = convertPersianToEnglish($_POST['inputCode']);
@@ -108,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   }
                   ?>
                 </select>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick="callLogin();" disabled>ورود</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick="callLogin();">ورود</button>
               </form>
             </div>
           </div>
