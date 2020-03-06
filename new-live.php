@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $inf_ago = "2000-01-01 00:00:00";
       while ($row = mysqli_fetch_assoc($res)) {
         $prep_2 = $conn->prepare("INSERT INTO `puz_absense`(`idcode`, `absense`, `time`, `livename`, `last_check`) VALUES(?, ?, ?, ?, ?)");
-        $prep_2->bind_param("sisss", $row['idcode'], $zero, $_POST['date'], $_POST['name'], $inf_ago);
+        $prep_2->bind_param("sisss", $row['idcode'], $zero, $zero, $_POST['name'], $inf_ago);
         $prep_2->execute();
         $prep_2->close();
       }

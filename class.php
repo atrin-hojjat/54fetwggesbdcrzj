@@ -208,12 +208,12 @@ if(!isset($_SESSION['name'])){
 		var upd_login = () => {
 			$.ajax({
 				method: 'post',
-				url: '/54fetwggesbdcrzj/continue_session.php', //TODO
+				url: 'continue_session.php', //TODO
 				success: (res) => {
 					console.log(res);
 				}
 			});
-		}	
+		}
 
 		var refresh_time = setInterval(upd_login, 10 * 60 * 1000); // TODO
 	});
