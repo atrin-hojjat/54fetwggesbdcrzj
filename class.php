@@ -185,7 +185,7 @@ if(!isset($_SESSION['name'])){
 
 		//Socket based
 		if(true) {
-			let sock_conn_addr = "puzzle-edu.con:2112/" //TODO
+			let sock_conn_addr = "puzzle-edu.com:2112/" //TODO
 			var sock //= WebSocket(sock_conn_addr);
 <?php echo 'let attr = "session/login/" + "'.$_SESSION['livegroup'].'/'.$_SESSION['idcode'].'";'; ?>
 			//sock = new WebSocket("ws://" + sock_conn_addr + attr);
