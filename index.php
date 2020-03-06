@@ -1,9 +1,7 @@
 <?php
 include("config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
   $myusername = mysqli_real_escape_string($conn, convertPersianToEnglish($_POST['inputCode']));
-
   $prep = $conn->prepare("SELECT * FROM `puz_users` WHERE idcode=?");
   $prep->bind_param("s", convertPersianToEnglish($_POST['inputCode']));
   $prep->execute();
@@ -41,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $count = 1;
     header('location:class.php');
   }
-} elseif ($_SESSION['idcode'] != '') {
-  header('location:index.php');
+} if(isset($_SESSION['idcode'])){
+	header('location:class.php');
 }
 ?>
 
