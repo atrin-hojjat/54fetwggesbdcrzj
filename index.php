@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div class="card card-signin my-5">
             <div class="card-body">
-              <h5 class="card-title text-center">ورود به وبینار</h5>
+              <h5 class="card-title text-center">پورتال حضور و غیاب</h5>
               <form class="form-signin" action="" method="post">
                 <div class="form-label-group text-right">
                   <input type="text" id="inputName" name="inputName" class="form-control" placeholder="نام و نام خانوادگی" required>
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="tel" id="inputCode" name="inputCode" style="direction: ltr;" class="form-control" placeholder="کد ملی" required>
                   <label for="inputCode">کد ملی</label>
                 </div>
-                <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" data-width="100%" title="واحد تحصیلی">
+                <select class="selectpicker mb-3 w-100" id="inputBranch" name="inputBranch" data-width="100%" title="واحد تحصیلی" required>
                   <option disabled>واحد تحصیلی</option>
                   <option>ادونس</option>
                   <option>امیرآباد</option>
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="text" id="inputSchool" name="inputSchool" class="form-control" placeholder="نام مدرسه">
                   <label for="inputSchool">نام مدرسه</label>
                 </div>
-                <select class="selectpicker mb-3 w-100" id="inputLiveGroup" name="inputLiveGroup" data-width="100%" title="انتخاب وبینار">
+                <select class="selectpicker mb-3 w-100" id="inputLiveGroup" name="inputLiveGroup" data-width="100%" title="انتخاب وبینار" required>
                   <option disabled>انتخاب وبینار</option>
                   <?php
                   $today = date('Y') . '-' . date('m') . '-' . date('d');
@@ -109,6 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onClick="callLogin();">ورود</button>
               </form>
+            </div>
+          </div>
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <p>در صورتی که هنگام ورود به سایت با مشکلی مواجه شدید به پشتیبانی سامانه (گوشه پایین سمت راست دکمه نارنجی رنگ) پیام دهید. </p>
             </div>
           </div>
         </div><?php
