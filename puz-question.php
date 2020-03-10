@@ -34,3 +34,49 @@ if ($conn->query($sql) === TRUE) {
 }
 
 mysqli_close($con);
+?>
+<?php
+$json = json_encode(array(
+  "username" => "Puzzle question gatherer",
+  "avatar_url" =>"https://puzzle-edu.ir/mat/logo-puzzle.png",
+  "embeds" => array(
+           array(
+  			"title" => "سوال",
+  			"color" => 14886498,
+  			"fields" => array(
+    		  array(
+    		    "name" => "نام",
+    		    "value" => $_POST['QuestionName'],
+    		    "inline" => true
+    		  ),
+    		  array(
+    		    "name" => "مدرسه",
+    		    "value" => $_SESSION['QuestionSchool'],
+    		    "inline" => true
+    		  ),
+    		  array(
+    		    "name" => "متن سوال",
+    		    "value" => $_POST['QuestionText']
+    		  )
+    		 ),
+    	    "footer" => array(
+    	    	"text" => "Puzzle-edu.ir",
+		     	"icon_url" => "https://puzzle-edu.ir/mat/logo-puzzle.png"
+		 	)
+
+  		)
+  	)
+));
+$ch = curl_init();
+$headers  = [
+            'Content-Type: application/json'
+        ];
+# URL Goes here
+curl_setopt($ch, CURLOPT_URL,"https://discordapp.com/api/webhooks/687027281423892485/87PCRE1OX-ga80BxKIwcl5cxXpSBqby9Sv27_jCXFUYD5fOVHZcGo4YWJGbhGMfK5BU_");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+$result     = curl_exec ($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+?>
